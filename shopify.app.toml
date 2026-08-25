@@ -1,0 +1,54 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "4d4459054f00d20728a08616249c4281"
+name = "Nia Discounts"
+application_url = "https://variant-discount-app.vercel.app"
+embedded = true
+
+[auth]
+redirect_urls = [
+  "https://variant-discount-app.vercel.app/auth/callback",
+  "https://variant-discount-app.vercel.app/auth/shopify/callback",
+  "https://variant-discount-app.vercel.app/api/auth/callback"
+]
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_discounts,read_discounts"
+
+[discount.metafields.app.function-configuration]
+type = "json"
+name = "Function configuration"
+access.admin = "merchant_read_write"
+access.storefront = "none"
+
+[webhooks]
+api_version = "2026-07"
+
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/app/uninstalled"
+  topics = [ "app/uninstalled" ]
+
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/app/scopes_update"
+  topics = [ "app/scopes_update" ]
+
+  # Mandatory GDPR compliance webhooks — required for all public Shopify apps.
+  # These use compliance_topics, not topics.
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/compliance"
+  compliance_topics = [ "customers/data_request", "customers/redact", "shop/redact" ]
+
+[pos]
+embedded = false
+
+[build]
+automatically_update_urls_on_dev = true
+
+# Workaround for a Shopify CLI 4.7.0 validation regression that requires
+# an [events] section even for apps that don't use the Events API.
+# Remove this once Shopify ships a fix.
+# https://community.shopify.dev/t/shopify-cli-4-7-0-requires-events-and-events-subscription-even-when-app-does-not-use-events-api/37089
+[events]
+api_version = "unstable"
+subscription = []
