@@ -20,7 +20,7 @@ export default function App() {
       <div className={styles.content}>
         <h1 className={styles.heading}>Smart Discounts for Shopify Variants</h1>
         <p className={styles.text}>
-          Simple, smart discounts based on variant names.
+          Apply percentage discounts to specific product variants, with smart include/exclude control.
         </p>
         {showForm && (
           <Form className={styles.form} method="post" action="/auth/login">
@@ -36,16 +36,16 @@ export default function App() {
         )}
         <ul className={styles.list}>
           <li>
-            <strong>Product feature</strong>. Some detail about your feature and
-            its benefit to your customer.
+            Apply percentage discounts to specific product variants.
           </li>
           <li>
-            <strong>Product feature</strong>. Some detail about your feature and
-            its benefit to your customer.
+            Include or exclude individual variants from a discount
           </li>
           <li>
-            <strong>Product feature</strong>. Some detail about your feature and
-            its benefit to your customer.
+            Works alongside product add-ons and custom options
+          </li>
+          <li>
+            Set discounts per variant title for precise control
           </li>
         </ul>
       </div>
