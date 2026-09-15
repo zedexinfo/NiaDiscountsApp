@@ -20,7 +20,7 @@ export default function PrivacyPolicy() {
       <div style={styles.container}>
         <h1 style={styles.h1}>Privacy Policy — Nia Discounts</h1>
         <p style={styles.meta}>
-          <em>Last updated: [DATE]</em>
+          <em>Last updated: 15th Sept 2026</em>
         </p>
 
         <p>
@@ -116,7 +116,7 @@ export default function PrivacyPolicy() {
         <p>
           We retain data for as long as the App is installed on your store
           and as needed to provide the App's functionality. If you uninstall
-          the App, we will delete or anonymize your data within [X days],
+          the App, we will delete or anonymize your data within 5 days,
           except where retention is required by law.
         </p>
 
@@ -131,7 +131,7 @@ export default function PrivacyPolicy() {
         </p>
         <p>
           To exercise these rights, merchants or their customers may contact
-          us at [support email], or submit a request through Shopify.
+          us at contact@zedexinfo.com, or submit a request through Shopify.
         </p>
 
         <h2 style={styles.h2}>7. Children's Privacy</h2>
