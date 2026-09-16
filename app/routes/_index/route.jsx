@@ -1,20 +1,19 @@
-import { redirect, Form, useLoaderData } from "react-router";
-import { login } from "../../shopify.server";
+import { redirect, useLoaderData } from "react-router";
 import styles from "./styles.module.css";
-
+ 
 export const loader = async ({ request }) => {
   const url = new URL(request.url);
-
+ 
   if (url.searchParams.get("shop")) {
     throw redirect(`/app?${url.searchParams.toString()}`);
   }
-
-  return { showForm: Boolean(login) };
+ 
+  return {};
 };
-
+ 
 export default function App() {
-  const { showForm } = useLoaderData();
-
+  useLoaderData();
+ 
   return (
     <div className={styles.index}>
       <div className={styles.content}>
@@ -22,27 +21,17 @@ export default function App() {
         <p className={styles.text}>
           Apply percentage discounts to specific product variants, with smart include/exclude control.
         </p>
-        {showForm && (
-          <Form className={styles.form} method="post" action="/auth/login">
-            <label className={styles.label}>
-              <span>Shop domain</span>
-              <input className={styles.input} type="text" name="shop" />
-              <span>e.g: my-shop-domain.myshopify.com</span>
-            </label>
-            <button className={styles.button} type="submit">
-              Log in
-            </button>
-          </Form>
-        )}
+        <p className={styles.text}>
+          This app is installed from the Shopify App Store. If you&apos;re a
+          merchant looking to install it, please visit our listing on the
+          Shopify App Store.
+        </p>
         <ul className={styles.list}>
           <li>
             Apply percentage discounts to specific product variants.
           </li>
           <li>
             Include or exclude individual variants from a discount
-          </li>
-          <li>
-            Works alongside product add-ons and custom options
           </li>
           <li>
             Set discounts per variant title for precise control
