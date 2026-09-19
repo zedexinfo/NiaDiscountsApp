@@ -1,6 +1,6 @@
 .page {
   min-height: 100%;
-  width: 100%;
+  width: auto;
   background: #f3eee1;
   display: flex;
   justify-content: center;
