@@ -1,4 +1,5 @@
 import { boundary } from "@shopify/shopify-app-react-router/server";
+import { useRevalidator } from "react-router";
 import { authenticate } from "../shopify.server";
 
 export const loader = async ({ request }) => {
@@ -84,6 +85,7 @@ export const loader = async ({ request }) => {
 
 export default function Index({ loaderData }) {
   const { functions, appDiscounts } = loaderData;
+  const revalidator = useRevalidator();
 
   const hasFunction = functions.length > 0;
 
@@ -94,6 +96,17 @@ export default function Index({ loaderData }) {
       <s-link href="shopify://admin/discounts" slot="primary-action">
         Add discount
       </s-link>
+      {/* Client-side revalidation — this is what actually hits our own
+          server (nia-discounts.vercel.app) with an authenticated session
+          token in the Authorization header, instead of shopify:// links
+          which never leave Shopify's own admin shell. */}
+      <s-button
+        slot="secondary-actions"
+        onClick={() => revalidator.revalidate()}
+        loading={revalidator.state === "loading" ? "" : undefined}
+      >
+        Refresh
+      </s-button>
 
       <s-section heading="Smart Discounts for Shopify Variants">
         <s-paragraph>
